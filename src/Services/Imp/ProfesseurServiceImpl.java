@@ -28,8 +28,8 @@ public class ProfesseurServiceImpl implements IProfesseurService {
      * (nom, prénom, Vacant, id, ville, date de naissance) via la
      * console. Gère également la validation des entrées.
      */
-    @Override
-    public void ajouterProfesseur()  {
+
+    public static void ajouterProfesseurr()  {
         System.out.println("Ajouter un professeur");
         System.out.print("Entrez le prénom : ");
         String prenom = scanner2.nextLine();
@@ -82,10 +82,15 @@ public class ProfesseurServiceImpl implements IProfesseurService {
         System.out.println("Voulez-vous ajouter un autre professeur ? (oui/non)");
         String reponse = scanner2.nextLine();
         if (reponse.equalsIgnoreCase("oui")) {
-            ajouterProfesseur();
+            ajouterProfesseurr();
         }
     }
 
+
+    @Override
+    public void ajouterProfesseur() {
+
+    }
 
     /**
      * Supprime un professur à partir de son identifiant. Demande confirmation à

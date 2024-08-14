@@ -14,7 +14,7 @@ import java.util.Scanner;
  */
 public class Eleve extends Personne implements ICUDEleve {
     /** Service pour la gestion des opérations sur les élèves. */
-    EleveServiceImpl eleveService = new EleveServiceImpl();
+//    EleveServiceImpl eleveService = new EleveServiceImpl();
 
     /** Liste statique des élèves. */
     static ArrayList<Eleve> eleves = new ArrayList<>();
@@ -87,7 +87,7 @@ public class Eleve extends Personne implements ICUDEleve {
             System.out.println("Voulez-vous ajouter un élève ? (oui/non)");
             String reponse = scanner2.nextLine();
             if (reponse.equalsIgnoreCase("oui")) {
-                eleveService.ajouterEleve();
+                EleveServiceImpl.ajouterElevee();
             }
         }
     }

@@ -15,8 +15,8 @@ import java.util.Scanner;
  * Cette classe gère les informations sur les professeurs, y compris les opérations CRUD, et les interactions liées à l'éducation.
  */
 public class Professeur extends Personne implements ICRUDProfesseur, IEducation {
-    /** Service pour la gestion des opérations sur les professeurs. */
-    ProfesseurServiceImpl professeurService = new ProfesseurServiceImpl();
+//    /** Service pour la gestion des opérations sur les professeurs. */
+//    ProfesseurServiceImpl professeurService = new ProfesseurServiceImpl();
 
     /** Liste statique des professeurs. */
     static ArrayList<Professeur> professeurs = new ArrayList<>();
@@ -150,7 +150,7 @@ public class Professeur extends Personne implements ICRUDProfesseur, IEducation 
             System.out.println("Voulez-vous ajouter un professeur ? (oui/non)");
             String reponse = scanner2.nextLine();
             if (reponse.equalsIgnoreCase("oui")) {
-                professeurService.ajouterProfesseur();
+                ProfesseurServiceImpl.ajouterProfesseurr();
             }
         }
     }

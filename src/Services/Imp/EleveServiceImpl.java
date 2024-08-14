@@ -26,8 +26,8 @@ public class EleveServiceImpl implements IEleveService {
      * (nom, prénom, âge, genre, identifiant, ville, date de naissance) via la
      * console. Gère également la validation des entrées.
      */
-    @Override
-    public void ajouterEleve()  {
+
+    public static void ajouterElevee()  {
         Scanner scanner2 = new Scanner(System.in);
         System.out.println("Ajouter un élève");
         System.out.print("Entrez le prénom : ");
@@ -83,8 +83,13 @@ public class EleveServiceImpl implements IEleveService {
         System.out.println("Voulez-vous ajouter un autre élève ? (oui/non)");
         String reponse = scanner2.nextLine();
         if (reponse.equalsIgnoreCase("oui")) {
-            ajouterEleve();
+            ajouterElevee();
         }
+    }
+
+    @Override
+    public void ajouterEleve() {
+
     }
 
     /**
