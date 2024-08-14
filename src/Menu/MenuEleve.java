@@ -7,11 +7,29 @@ import java.time.Instant;
 import java.time.LocalTime;
 import java.util.Scanner;
 
+
+/**
+ * Classe qui gère le menu de la gestion des élèves dans l'application.
+ * Permet à l'utilisateur de choisir différentes options telles que l'ajout,
+ * la suppression, la modification, la liste des élèves, ou de quitter le menu.
+ * Affiche une interface utilisateur textuelle pour naviguer dans les options disponibles.
+ */
 public class MenuEleve {
 
+
+    /**
+     * Affiche le menu de gestion des élèves et traite les choix de l'utilisateur.
+     * Permet d'ajouter, supprimer, modifier, lister les élèves, obtenir le dernier élève ajouté,
+     * ou de quitter le menu. Utilise l'instant de début pour calculer la durée de la session
+     * à la fermeture de l'application.
+     *
+     * @param debut L'instant de début de la session, utilisé pour calculer la durée de la session
+     *              à la fin de l'application.
+     */
     public static void menu(Instant debut) {
         LocalTime date = LocalTime.now();
         Scanner scanner = new Scanner(System.in);
+        Eleve e = new Eleve();
         EleveServiceImpl eleveService = new EleveServiceImpl();
         int choix;
         do {
@@ -49,7 +67,7 @@ public class MenuEleve {
                     eleveService.listerEleves(debut);
                     break;
                 case 5:
-                    Eleve.dernier();
+                    e.dernier();
                     scanner.nextLine();
                     System.out.println("Appuyez sur 0 pour revenir au menu : ");
                     int choixRetour = scanner.nextInt();

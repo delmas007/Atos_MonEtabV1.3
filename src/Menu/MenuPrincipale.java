@@ -1,14 +1,28 @@
 package Menu;
 
-import Methode.MethodeEleve;
 import Services.Imp.EleveServiceImpl;
 
 import java.time.Instant;
 import java.time.LocalTime;
 import java.util.Scanner;
 
+
+/**
+ * Classe qui gère le menu principal de l'application, permettant à l'utilisateur
+ * de choisir entre la gestion des élèves, des professeurs, des utilisateurs, ou de quitter l'application.
+ * Affiche une interface utilisateur textuelle pour naviguer dans les différentes options disponibles.
+ */
 public class MenuPrincipale {
 
+
+    /**
+     * Affiche le menu principal et traite les choix de l'utilisateur.
+     * Permet d'accéder aux sous-menus pour la gestion des élèves, des professeurs,
+     * des utilisateurs, ou de quitter l'application. Utilise l'instant de début pour
+     * calculer la durée de la session à la fermeture de l'application.
+     *
+     * @param debut L'instant de début de la session, utilisé pour calculer la durée de la session à la fin.
+     */
     public static void menuPrincipale(Instant debut) {
         int choix;
         do {

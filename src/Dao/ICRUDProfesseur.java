@@ -1,4 +1,4 @@
-package Interface;
+package Dao;
 
 import Models.Professeur;
 

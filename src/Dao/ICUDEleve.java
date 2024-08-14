@@ -1,10 +1,10 @@
-package Interface;
+package Dao;
 
 import Models.Eleve;
 
 import java.util.List;
 
-public interface IEleveDao {
+public interface ICUDEleve {
     Eleve ajouter(Eleve eleve);
     Eleve modifier(Eleve eleve);
     void supprimer(int identifiant);

@@ -7,12 +7,27 @@ import java.time.Instant;
 import java.time.LocalTime;
 import java.util.Scanner;
 
+/**
+ * Classe qui gère le menu des professeurs, permettant d'ajouter, supprimer,
+ * modifier, lister et obtenir le dernier professeur ajouté. Fournit une
+ * interface utilisateur textuelle pour interagir avec le service de professeurs.
+ */
 public class MenuProfesseur {
 
+
+    /**
+     * Affiche le menu de gestion des professeurs et traite les choix de l'utilisateur.
+     * Permet d'ajouter, de supprimer, de modifier, de lister les professeurs et
+     * d'obtenir le dernier professeur ajouté. Dirige également vers le menu principal
+     * ou quitte selon le choix de l'utilisateur.
+     *
+     * @param debut L'instant de début de la session, utilisé pour calculer la durée de la session.
+     */
     public static void menu(Instant debut) {
         LocalTime date = LocalTime.now();
         Scanner scanner = new Scanner(System.in);
         ProfesseurServiceImpl professeurService = new ProfesseurServiceImpl();
+        Professeur professeur = new Professeur();
         int choix;
         do {
             System.out.println(
@@ -49,7 +64,7 @@ public class MenuProfesseur {
                     professeurService.listerProfesseur(debut);
                     break;
                 case 5:
-                    Professeur.dernier();
+                    professeur.dernier();
                     break;
                 case 6:
                     MenuPrincipale.menuPrincipale(debut);

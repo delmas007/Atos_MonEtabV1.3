@@ -12,9 +12,20 @@ import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Classe d'implémentation du service EleveService qui gère les opérations
+ * liées aux élèves, telles que l'ajout, la suppression, la modification,
+ * et l'affichage des informations des élèves.
+ */
 public class EleveServiceImpl implements IEleveService {
     Eleve elevee = new Eleve();
 
+
+    /**
+     * Ajoute un nouvel élève après avoir demandé les informations nécessaires
+     * (nom, prénom, âge, genre, identifiant, ville, date de naissance) via la
+     * console. Gère également la validation des entrées.
+     */
     @Override
     public void ajouterEleve()  {
         Scanner scanner2 = new Scanner(System.in);
@@ -76,6 +87,10 @@ public class EleveServiceImpl implements IEleveService {
         }
     }
 
+    /**
+     * Supprime un élève à partir de son identifiant. Demande confirmation à
+     * l'utilisateur s'il souhaite supprimer un autre élève.
+     */
     @Override
     public void supprimerEleve() {
         Scanner scanner3 = new Scanner(System.in);
@@ -103,6 +118,15 @@ public class EleveServiceImpl implements IEleveService {
         }
     }
 
+
+
+    /**
+     * Modifie les informations d'un élève (nom, prénom, date de naissance,
+     * identifiant) en fonction du choix de l'utilisateur. Affiche un menu
+     * permettant de choisir quelle information modifier.
+     *
+     * @param debut L'Instant marquant le début de la session, utilisé pour calculer la durée de la session.
+     */
     @Override
     public void modifierEleve(Instant debut) {
         Scanner scanner4 = new Scanner(System.in);
@@ -152,6 +176,13 @@ public class EleveServiceImpl implements IEleveService {
         }while (choix != 0);
     } ;
 
+
+    /**
+     * Affiche la liste des élèves. Si la liste est vide, l'utilisateur est
+     * invité à retourner au menu principal.
+     *
+     * @param debut L'Instant marquant le début de la session, utilisé pour calculer la durée de la session.
+     */
     @Override
     public void listerEleves(Instant debut) {
         Eleve eleve = new Eleve();
@@ -187,6 +218,12 @@ public class EleveServiceImpl implements IEleveService {
 
 
 
+    /**
+     * Quitte l'application en affichant un message d'au revoir et la durée de
+     * la session.
+     *
+     * @param debut L'Instant marquant le début de la session, utilisé pour calculer la durée de la session.
+     */
     public void quitter(Instant debut) {
         System.out.println("Au revoir !");
         Instant fin = Instant.now();
@@ -198,6 +235,13 @@ public class EleveServiceImpl implements IEleveService {
 
 
     }
+
+    /**
+     * Demande à l'utilisateur de saisir un identifiant numérique pour un élève
+     * et valide l'entrée.
+     *
+     * @return L'identifiant numérique saisi par l'utilisateur.
+     */
     public int idEleve() {
         Scanner scanner = new Scanner(System.in);
         int id = 0;
@@ -215,6 +259,14 @@ public class EleveServiceImpl implements IEleveService {
         return id;
     }
 
+
+    /**
+     * Modifie l'élève spécifié en fonction de la valeur à modifier (nom,
+     * prénom, date de naissance, identifiant).
+     *
+     * @param debut L'Instant marquant le début de la session, utilisé pour calculer la durée de la session.
+     * @param valeurModifiee La valeur à modifier pour l'élève (Nom, Prénom, etc.).
+     */
     public void modEleve(Instant debut, String valeurModifiee) {
         Scanner scanner5 = new Scanner(System.in);
         boolean continuer = true;
@@ -256,6 +308,14 @@ public class EleveServiceImpl implements IEleveService {
             }
         }
     }
+
+    /**
+     * Valide et modifie l'identifiant de l'élève en s'assurant qu'il s'agit d'un
+     * nombre entier valide.
+     *
+     * @param ele L'élève dont l'identifiant doit être modifié.
+     * @return L'objet Eleve mis à jour avec l'identifiant modifié.
+     */
     public Eleve exceptionInt(Eleve ele) {
         Scanner scanner = new Scanner(System.in);
         int id = 0;
@@ -274,6 +334,14 @@ public class EleveServiceImpl implements IEleveService {
 
         return ele;
     }
+
+    /**
+     * Valide et modifie la date de naissance de l'élève en s'assurant qu'elle
+     * est au format "dd/MM/yyyy".
+     *
+     * @param ele L'élève dont la date de naissance doit être modifiée.
+     * @return L'objet Eleve mis à jour avec la date de naissance modifiée.
+     */
     public Eleve exceptionDate(Eleve ele) {
         Scanner scanner = new Scanner(System.in);
         Date date1 = null;
@@ -292,6 +360,15 @@ public class EleveServiceImpl implements IEleveService {
         }
         return ele;
     }
+
+    /**
+     * Méthode utilisée pour gérer la modification d'une valeur spécifique
+     * (nom, prénom, etc.) de l'élève. Demande confirmation à l'utilisateur
+     * s'il souhaite modifier un autre élève après la modification.
+     *
+     * @param debut L'Instant marquant le début de la session, utilisé pour calculer la durée de la session.
+     * @param valeurModifiee La valeur à modifier pour l'élève (Nom, Prénom, etc.).
+     */
     public void methode(Instant debut, String valeurModifiee) {
         Scanner scanner4 = new Scanner(System.in);
         modEleve(debut, valeurModifiee);

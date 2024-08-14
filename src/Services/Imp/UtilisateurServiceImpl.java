@@ -11,9 +11,20 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.UUID;
 
+/**
+ * Classe d'implémentation du service UtilisateurService qui gère les opérations
+ * liées aux Utilisateurs, telles que l'ajout, la suppression, la modification,
+ * et l'affichage des informations des Utilisateurs.
+ */
 public class UtilisateurServiceImpl implements IUtilisateurService {
     Utilisateur utilisateurr = new Utilisateur();
 
+
+    /**
+     * Ajoute un nouvel utilisateur après avoir demandé les informations nécessaires
+     * (identifiant et mot de passe) via la
+     * console. Gère également la validation des entrées.
+     */
     @Override
     public void ajouterUtilisateur()  {
         Scanner scanner2 = new Scanner(System.in);
@@ -29,6 +40,10 @@ public class UtilisateurServiceImpl implements IUtilisateurService {
         }
     }
 
+    /**
+     * Supprime un utilisateur à partir de son identifiant. Demande confirmation à
+     * l'utilisateur s'il souhaite supprimer un autre élève.
+     */
     @Override
     public void supprimerUtilisateur() {
         Scanner scanner3 = new Scanner(System.in);
@@ -49,6 +64,13 @@ public class UtilisateurServiceImpl implements IUtilisateurService {
         }
     }
 
+    /**
+     * Modifie les informations d'un utilisateur (pseudo, mot de passe ou
+     * identifiant) en fonction du choix de l'utilisateur. Affiche un menu
+     * permettant de choisir quelle information modifier.
+     *
+     * @param debut L'Instant marquant le début de la session, utilisé pour calculer la durée de la session.
+     */
     @Override
     public void modifierUtilisateur(Instant debut) {
         Scanner scanner4 = new Scanner(System.in);
@@ -93,6 +115,12 @@ public class UtilisateurServiceImpl implements IUtilisateurService {
         }while (choix != 0);
     }
 
+    /**
+     * Affiche la liste des utilisateurs. Si la liste est vide, l'utilisateur est
+     * invité à retourner au menu principal.
+     *
+     * @param debut L'Instant marquant le début de la session, utilisé pour calculer la durée de la session.
+     */
     @Override
     public void listerUtilisateurs(Instant debut) {
         Utilisateur Utilisateur = new Utilisateur();
@@ -127,7 +155,12 @@ public class UtilisateurServiceImpl implements IUtilisateurService {
     }
 
 
-
+    /**
+     * Quitte l'application en affichant un message d'au revoir et la durée de
+     * la session.
+     *
+     * @param debut L'Instant marquant le début de la session, utilisé pour calculer la durée de la session.
+     */
     public void quitter(Instant debut) {
         System.out.println("Au revoir !");
         Instant fin = Instant.now();
@@ -139,6 +172,13 @@ public class UtilisateurServiceImpl implements IUtilisateurService {
 
 
     }
+
+    /**
+     * Demande à l'utilisateur de saisir un identifiant numérique pour un utilisateur
+     * et valide l'entrée.
+     *
+     * @return L'identifiant numérique saisi par l'utilisateur.
+     */
     public String idUtilisateur() {
         Scanner scanner = new Scanner(System.in);
         String id = "";
@@ -156,6 +196,14 @@ public class UtilisateurServiceImpl implements IUtilisateurService {
         return id;
     }
 
+
+    /**
+     * Modifie l'utilisateur spécifié en fonction de la valeur à modifier (Identifiant,
+     * motDePasse, pseudo).
+     *
+     * @param debut L'Instant marquant le début de la session, utilisé pour calculer la durée de la session.
+     * @param valeurModifiee La valeur à modifier pour l'utilisateur (Nom, Prénom, etc.).
+     */
     public void modUtilisateur(Instant debut, String valeurModifiee) {
         Scanner scanner5 = new Scanner(System.in);
         boolean continuer = true;
@@ -197,6 +245,15 @@ public class UtilisateurServiceImpl implements IUtilisateurService {
             }
         }
     }
+
+    /**
+     * Méthode utilisée pour gérer la modification d'une valeur spécifique
+     * de l'utilisateur. Demande confirmation à l'utilisateur
+     * s'il souhaite modifier un autre professeur après la modification.
+     *
+     * @param debut L'Instant marquant le début de la session, utilisé pour calculer la durée de la session.
+     * @param valeurModifiee La valeur à modifier pour l'utilisateur.
+     */
     public void methode(Instant debut, String valeurModifiee) {
         Scanner scanner4 = new Scanner(System.in);
         modUtilisateur(debut, valeurModifiee);

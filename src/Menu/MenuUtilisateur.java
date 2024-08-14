@@ -6,8 +6,21 @@ import java.time.Instant;
 import java.time.LocalTime;
 import java.util.Scanner;
 
+/**
+ * Classe qui gère le menu des utilisateurs, permettant d'ajouter, supprimer,
+ * modifier et lister les utilisateurs. Fournit une interface utilisateur
+ * textuelle pour interagir avec le service d'utilisateurs.
+ */
 public class MenuUtilisateur {
 
+
+    /**
+     * Affiche le menu de gestion des utilisateurs et traite les choix de l'utilisateur.
+     * Permet d'ajouter, de supprimer, de modifier et de lister les utilisateurs.
+     * Dirige également vers le menu principal ou l'accueil selon le choix de l'utilisateur.
+     *
+     * @param debut L'instant de début de la session, utilisé pour calculer la durée de la session.
+     */
     public static void menu(Instant debut) {
         LocalTime date = LocalTime.now();
         Scanner scanner = new Scanner(System.in);

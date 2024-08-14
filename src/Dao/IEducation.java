@@ -1,4 +1,4 @@
-package Interface;
+package Dao;
 
 public interface IEducation {
     String emseigner(String matiere);

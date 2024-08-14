@@ -12,10 +12,22 @@ import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
+
+/**
+ * Classe d'implémentation du service ProfesseurService qui gère les opérations
+ * liées aux professeurs, telles que l'ajout, la suppression, la modification,
+ * et l'affichage des informations des professeurs.
+ */
 public class ProfesseurServiceImpl implements IProfesseurService {
     Professeur professeurr = new Professeur();
     static Scanner scanner2 = new Scanner(System.in);
 
+
+    /**
+     * Ajoute un nouvel professeur après avoir demandé les informations nécessaires
+     * (nom, prénom, Vacant, id, ville, date de naissance) via la
+     * console. Gère également la validation des entrées.
+     */
     @Override
     public void ajouterProfesseur()  {
         System.out.println("Ajouter un professeur");
@@ -74,6 +86,11 @@ public class ProfesseurServiceImpl implements IProfesseurService {
         }
     }
 
+
+    /**
+     * Supprime un professur à partir de son identifiant. Demande confirmation à
+     * l'utilisateur s'il souhaite supprimer un autre professeur.
+     */
     @Override
     public void supprimerProfesseur() {
         Scanner scanner3 = new Scanner(System.in);
@@ -101,6 +118,14 @@ public class ProfesseurServiceImpl implements IProfesseurService {
         }
     }
 
+
+    /**
+     * Modifie les informations du professseur (nom, prénom, date de naissance,
+     * identifiant) en fonction du choix de l'utilisateur. Affiche un menu
+     * permettant de choisir quelle information modifier.
+     *
+     * @param debut L'Instant marquant le début de la session, utilisé pour calculer la durée de la session.
+     */
     @Override
     public void modifierProfesseur(Instant debut) {
         Scanner scanner4 = new Scanner(System.in);
@@ -151,6 +176,13 @@ public class ProfesseurServiceImpl implements IProfesseurService {
 
     }
 
+
+    /**
+     * Affiche la liste des professeurs. Si la liste est vide, l'utilisateur est
+     * invité à retourner au menu principal.
+     *
+     * @param debut L'Instant marquant le début de la session, utilisé pour calculer la durée de la session.
+     */
     @Override
     public void listerProfesseur(Instant debut) {
         Professeur professeur = new Professeur();
@@ -185,7 +217,12 @@ public class ProfesseurServiceImpl implements IProfesseurService {
     }
 
 
-
+    /**
+     * Quitte l'application en affichant un message d'au revoir et la durée de
+     * la session.
+     *
+     * @param debut L'Instant marquant le début de la session, utilisé pour calculer la durée de la session.
+     */
     public void quitter(Instant debut) {
         System.out.println("Au revoir !");
         Instant fin = Instant.now();
@@ -195,6 +232,16 @@ public class ProfesseurServiceImpl implements IProfesseurService {
         long seconds = totalSeconds % 60;
         System.out.println("Durée de la session : " + minutes + " minute(s) et " + seconds + " seconde(s).");
     }
+
+
+    /**
+     * Méthode utilisée pour gérer la modification d'une valeur spécifique
+     * (nom, prénom, etc.) du professeur. Demande confirmation à l'utilisateur
+     * s'il souhaite modifier un autre professeur après la modification.
+     *
+     * @param debut L'Instant marquant le début de la session, utilisé pour calculer la durée de la session.
+     * @param valeurModifiee La valeur à modifier pour le professeur (Nom, Prénom, etc.).
+     */
     public void methode(Instant debut, String valeurModifiee) {
         Scanner scanner4 = new Scanner(System.in);
         modProfesseur(debut, valeurModifiee);
@@ -206,6 +253,14 @@ public class ProfesseurServiceImpl implements IProfesseurService {
             modifierProfesseur(debut);
         }
     }
+
+    /**
+     * Modifie un professeur spécifié en fonction de la valeur à modifier (nom,
+     * prénom, date de naissance, identifiant).
+     *
+     * @param debut L'Instant marquant le début de la session, utilisé pour calculer la durée de la session.
+     * @param valeurModifiee La valeur à modifier pour le professeur (Nom, Prénom, etc.).
+     */
     public void modProfesseur(Instant debut, String valeurModifiee) {
         Scanner scanner5 = new Scanner(System.in);
         boolean continuer = true;
@@ -247,6 +302,13 @@ public class ProfesseurServiceImpl implements IProfesseurService {
             }
         }
     }
+
+    /**
+     * Demande à l'utilisateur de saisir un identifiant numérique pour un professeur
+     * et valide l'entrée.
+     *
+     * @return L'identifiant numérique saisi par l'utilisateur.
+     */
     public int idProfesseur() {
         Scanner scanner = new Scanner(System.in);
         int id = 0;
@@ -264,6 +326,13 @@ public class ProfesseurServiceImpl implements IProfesseurService {
         return id;
     }
 
+    /**
+     * Valide et modifie l'identifiant du professeur en s'assurant qu'il s'agit d'un
+     * nombre entier valide.
+     *
+     * @param ele Le professeur dont l'identifiant doit être modifié.
+     * @return L'objet professeur mis à jour avec l'identifiant modifié.
+     */
     public Professeur exceptionInt(Professeur ele) {
         Scanner scanner = new Scanner(System.in);
         int id = 0;
@@ -282,6 +351,15 @@ public class ProfesseurServiceImpl implements IProfesseurService {
 
         return ele;
     }
+
+
+    /**
+     * Valide et modifie la date de naissance du professeur en s'assurant qu'elle
+     * est au format "dd/MM/yyyy".
+     *
+     * @param ele Le professeur dont la date de naissance doit être modifiée.
+     * @return L'objet professeur mis à jour avec la date de naissance modifiée.
+     */
     public Professeur exceptionDate(Professeur ele) {
         Scanner scanner = new Scanner(System.in);
         Date date1 = null;
