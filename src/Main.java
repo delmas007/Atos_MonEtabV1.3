@@ -11,34 +11,55 @@ public class Main {
     private static final String DB_USER = "root";
     private static final String DB_PASSWORD = "";
 
+    /**
+     * Point d'entrée principal de l'application.
+     * Cette méthode démarre l'application, affiche un message de bienvenue,
+     * gère le processus de connexion utilisateur, et dirige l'utilisateur vers le menu principal
+     * après une connexion réussie.
+     *
+     * @param args Arguments de ligne de commande (non utilisés dans cette méthode).
+     */
     public static void main(String[] args) {
+        // Enregistre le moment où l'application commence
         Instant debut = Instant.now();
+
+        // Création d'un scanner pour lire les entrées de l'utilisateur
         Scanner scanner = new Scanner(System.in);
 
+        // Ajoute un utilisateur par défaut si ce n'est pas déjà fait
         ajouterUtilisateurParDefaut();
 
-            System.out.println(
-                    """
-                    ******************************************************
-                            BIENVENU DANS L’APPLICATION ETAB v1.3
-                    ****************************************************** 
-                                        CONNEXION                 
-                   """
-            );
+        // Affiche le message de bienvenue et demande les informations de connexion
+        System.out.println(
+                """
+                ******************************************************
+                        BIENVENU DANS L’APPLICATION ETAB v1.3
+                ****************************************************** 
+                                CONNEXION                 
+               """
+        );
+
+        // Demande l'identifiant et le mot de passe à l'utilisateur
+        System.out.println("Identifiant : ");
+        String identifiant = scanner.nextLine();
+        System.out.println("Mot de passe : ");
+        String motDePasse = scanner.nextLine();
+
+        // Vérifie les informations de connexion
+        boolean connexion = Utilisateur.authentifier(identifiant, motDePasse);
+
+        // Si les informations de connexion sont incorrectes, demande à l'utilisateur de réessayer
+        while (!connexion) {
+            System.out.println("Identifiant ou mot de passe incorrect. Veuillez réessayer.");
             System.out.println("Identifiant : ");
-            String identifiant = scanner.nextLine();
+            identifiant = scanner.nextLine();
             System.out.println("Mot de passe : ");
-            String motDePasse = scanner.nextLine();
-            boolean connexion = Utilisateur.authentifier(identifiant, motDePasse);
-            while (!connexion) {
-                System.out.println("Identifiant ou mot de passe incorrect. Veuillez réessayer.");
-                System.out.println("Identifiant : ");
-                identifiant = scanner.nextLine();
-                System.out.println("Mot de passe : ");
-                motDePasse = scanner.nextLine();
-                connexion = Utilisateur.authentifier(identifiant, motDePasse);
-            }
-            MenuPrincipale.menuPrincipale(debut);
+            motDePasse = scanner.nextLine();
+            connexion = Utilisateur.authentifier(identifiant, motDePasse);
+        }
+
+        // Redirige l'utilisateur vers le menu principal après une connexion réussie
+        MenuPrincipale.menuPrincipale(debut);
     }
 
     private static void ajouterUtilisateurParDefaut() {
