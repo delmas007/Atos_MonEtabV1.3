@@ -20,16 +20,14 @@ public class Main {
      * @param args Arguments de ligne de commande (non utilisés dans cette méthode).
      */
     public static void main(String[] args) {
-        // Enregistre le moment où l'application commence
         Instant debut = Instant.now();
 
-        // Création d'un scanner pour lire les entrées de l'utilisateur
         Scanner scanner = new Scanner(System.in);
 
-        // Ajoute un utilisateur par défaut si ce n'est pas déjà fait
+
         ajouterUtilisateurParDefaut();
 
-        // Affiche le message de bienvenue et demande les informations de connexion
+
         System.out.println(
                 """
                 ******************************************************
@@ -45,10 +43,10 @@ public class Main {
         System.out.println("Mot de passe : ");
         String motDePasse = scanner.nextLine();
 
-        // Vérifie les informations de connexion
+
         boolean connexion = Utilisateur.authentifier(identifiant, motDePasse);
 
-        // Si les informations de connexion sont incorrectes, demande à l'utilisateur de réessayer
+
         while (!connexion) {
             System.out.println("Identifiant ou mot de passe incorrect. Veuillez réessayer.");
             System.out.println("Identifiant : ");
@@ -58,7 +56,6 @@ public class Main {
             connexion = Utilisateur.authentifier(identifiant, motDePasse);
         }
 
-        // Redirige l'utilisateur vers le menu principal après une connexion réussie
         MenuPrincipale.menuPrincipale(debut);
     }
 
