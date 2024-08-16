@@ -165,7 +165,7 @@ public class OptionEleve {
      */
     public void listerEleves(Instant debut) {
         Eleve eleve = new Eleve();
-        List<Eleve> eleves = elevee.getAll();
+        List<Eleve> eleves = eleve.obtenirEleve();
         if (eleves.isEmpty()) {
             System.out.println("La liste des élèves est vide.");
             Scanner scanner = new Scanner(System.in);
