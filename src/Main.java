@@ -1,5 +1,5 @@
 import Models.Utilisateur;
-import Menu.MenuPrincipale;
+import Other.Menu.MenuPrincipale;
 
 import java.sql.*;
 import java.time.Instant;

@@ -1,6 +1,9 @@
 package Services;
 
+import Models.Eleve;
+
 import java.time.Instant;
+import java.util.List;
 
 /**
  * Interface définissant les services liés à la gestion des élèves.
@@ -35,5 +38,11 @@ public interface IEleveService {
      * @param debut Instant représentant le début de la session ou de l'opération.
      */
     void listerEleves(Instant debut);
+
+    Eleve save(Eleve eleve);
+    Eleve update(Eleve eleve);
+    void delete(int id);
+    List<Eleve> getAll();
+    Eleve getOne(int id);
 }
 

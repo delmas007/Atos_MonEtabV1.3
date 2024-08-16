@@ -2,7 +2,7 @@ package Services.Imp;
 
 
 import Models.Professeur;
-import Menu.MenuProfesseur;
+import Other.Menu.MenuProfesseur;
 import Services.IProfesseurService;
 
 import java.text.SimpleDateFormat;
@@ -32,9 +32,23 @@ public class ProfesseurServiceImpl implements IProfesseurService {
     public static void ajouterProfesseurr()  {
         System.out.println("Ajouter un professeur");
         System.out.print("Entrez le prénom : ");
+        int telephone = 0;
+        boolean validAge = false;
+        while (!validAge) {
+            try {
+                System.out.print("Entrez le telephone : ");
+                telephone = scanner2.nextInt();
+                validAge = true;
+            } catch (Exception e) {
+                System.out.println("Erreur : Veuillez entrer un numero valide.");
+                scanner2.nextLine();
+            }
+        }
+        scanner2.nextLine();
         String prenom = scanner2.nextLine();
         System.out.print("Entrez le nom : ");
         String nom = scanner2.nextLine();
+
         boolean validVacant = false;
         boolean vacant = true;
         while (!validVacant) {
@@ -75,7 +89,7 @@ public class ProfesseurServiceImpl implements IProfesseurService {
                 System.out.println("Erreur : Veuillez entrer une date valide.");
             }
         }
-        Professeur professeur = new Professeur(vacant,id,nom,prenom,date1,ville);
+        Professeur professeur = new Professeur(vacant,id,nom,prenom,date1,ville,telephone);
         Professeur.ajouters(professeur);
         System.out.println("Entite.Professeur ajouté : " + professeur.toString());
 

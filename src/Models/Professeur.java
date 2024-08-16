@@ -43,8 +43,8 @@ public class Professeur extends Personne implements ICRUDProfesseur, IEducation 
      * @param dateNaissance La date de naissance du professeur.
      * @param ville         La ville de résidence du professeur.
      */
-    public Professeur(boolean vacant, int id, String nom, String prenom, Date dateNaissance, String ville) {
-        super(id, nom, prenom, dateNaissance, ville);
+    public Professeur(boolean vacant, int id, String nom, String prenom, Date dateNaissance, String ville,int telephone) {
+        super(id, nom, prenom, dateNaissance, ville,telephone);
         this.vacant = vacant;
     }
 

@@ -1,10 +1,8 @@
-package Services.Imp;
+package Other.Option;
 
-
-import Dao.impl.EleveDaoImpl;
 import Models.Eleve;
 import Other.Menu.MenuEleve;
-import Services.IEleveService;
+import Services.Imp.EleveServiceImpl;
 
 import java.text.SimpleDateFormat;
 import java.time.Duration;
@@ -14,52 +12,9 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.UUID;
 
-/**
- * Classe d'implémentation du service EleveService qui gère les opérations
- * liées aux élèves, telles que l'ajout, la suppression, la modification,
- * et l'affichage des informations des élèves.
- */
-public class EleveServiceImpl implements IEleveService {
-    Eleve elevee = new Eleve();
-      EleveDaoImpl eleveDAO = new EleveDaoImpl();
+public class OptionEleve {
 
-    public EleveServiceImpl() {
-    }
-
-
-    /**
-     * Ajoute un nouvel élève après avoir demandé les informations nécessaires
-     * (nom, prénom, âge, genre, identifiant, ville, date de naissance) via la
-     * console. Gère également la validation des entrées.
-     */
-
-    @Override
-    public Eleve save(Eleve eleve) {
-        return eleveDAO.ajouter(eleve);
-    }
-
-    @Override
-    public Eleve update(Eleve eleve) {
-        return eleveDAO.modifier(eleve);
-    }
-
-    @Override
-    public void delete(int id) {
-        eleveDAO.supprimer(id);
-    }
-
-    @Override
-    public List<Eleve> getAll() {
-        return eleveDAO.obtenirEleves();
-    }
-
-    @Override
-    public Eleve getOne(int id) {
-        return eleveDAO.obtenir(id);
-    }
-
-
-
+    static EleveServiceImpl elevee = new EleveServiceImpl();
 
     public static void ajouterElevee()  {
         Scanner scanner2 = new Scanner(System.in);
@@ -68,26 +23,22 @@ public class EleveServiceImpl implements IEleveService {
         String prenom = scanner2.nextLine();
         System.out.print("Entrez le nom : ");
         String nom = scanner2.nextLine();
-        System.out.print("Entrez le telephone : ");
-        String telephone = scanner2.nextLine();
-        System.out.print("Entrez la classe : ");
-        String classe = scanner2.nextLine();
-        String matricule = UUID.randomUUID().toString();
-        int age = 0;
+        int telephone = 0;
         boolean validAge = false;
         while (!validAge) {
             try {
-                System.out.print("Entrez l'âge : ");
-                age = scanner2.nextInt();
+                System.out.print("Entrez le telephone : ");
+                telephone = scanner2.nextInt();
                 validAge = true;
             } catch (Exception e) {
-                System.out.println("Erreur : Veuillez entrer l'âge valide.");
+                System.out.println("Erreur : Veuillez entrer un numero valide.");
                 scanner2.nextLine();
             }
         }
         scanner2.nextLine();
-        System.out.print("Entrez le genre : ");
-        String genre = scanner2.nextLine();
+        System.out.print("Entrez la classe : ");
+        String classe = scanner2.nextLine();
+        String matricule = UUID.randomUUID().toString();
         boolean validId = false;
         int id = 0;
         while (!validId) {
@@ -116,9 +67,10 @@ public class EleveServiceImpl implements IEleveService {
                 System.out.println("Erreur : Veuillez entrer une date valide.");
             }
         }
-//        Eleve eleve = new Eleve(id, nom, prenom, date1, ville,classe, matricule,telephone);
-//        System.out.println("Élève ajouté : " + eleve.toString());
-//        Eleve.ajouters(eleve);
+        Eleve eleve = new Eleve(id, nom, prenom, date1, ville,classe, matricule,telephone);
+        System.out.println("Élève ajouté : " + eleve.toString());
+        elevee.save(eleve);
+
         System.out.println("Voulez-vous ajouter un autre élève ? (oui/non)");
         String reponse = scanner2.nextLine();
         if (reponse.equalsIgnoreCase("oui")) {
@@ -126,16 +78,11 @@ public class EleveServiceImpl implements IEleveService {
         }
     }
 
-    @Override
-    public void ajouterEleve() {
-
-    }
-
     /**
      * Supprime un élève à partir de son identifiant. Demande confirmation à
      * l'utilisateur s'il souhaite supprimer un autre élève.
      */
-    @Override
+
     public void supprimerEleve() {
         Scanner scanner3 = new Scanner(System.in);
         boolean validInput = false;
@@ -144,7 +91,8 @@ public class EleveServiceImpl implements IEleveService {
                 System.out.print("Entrez l'identifiant de l'élève : ");
                 int id = scanner3.nextInt();
                 validInput = true;
-                elevee.supprimer(id);
+//                elevee.supprimer(id);
+                elevee.delete(id);
             } catch (Exception e) {
                 System.out.println("Erreur : Veuillez entrer un identifiant numérique valide.");
                 scanner3.next();
@@ -171,7 +119,7 @@ public class EleveServiceImpl implements IEleveService {
      *
      * @param debut L'Instant marquant le début de la session, utilisé pour calculer la durée de la session.
      */
-    @Override
+
     public void modifierEleve(Instant debut) {
         Scanner scanner4 = new Scanner(System.in);
         Eleve eleve = new Eleve();
@@ -184,7 +132,7 @@ public class EleveServiceImpl implements IEleveService {
                         1: Modifier le nom
                         2: Modifier le prénom
                         3: Modifier la date de naissance
-                        4: Modifier l'identifiant
+                        4: Modifier le numero
                         5: Retour
                         6: Accueil
                        
@@ -205,7 +153,7 @@ public class EleveServiceImpl implements IEleveService {
                 methode(debut, valeurModifiee);
                 break;
             case 4:
-                valeurModifiee = "Identifiant";
+                valeurModifiee = "numero";
                 methode(debut, valeurModifiee);
                 break;
             case 5:
@@ -227,7 +175,6 @@ public class EleveServiceImpl implements IEleveService {
      *
      * @param debut L'Instant marquant le début de la session, utilisé pour calculer la durée de la session.
      */
-    @Override
     public void listerEleves(Instant debut) {
         Eleve eleve = new Eleve();
         List<Eleve> eleves = eleve.obtenirEleve();
@@ -317,32 +264,38 @@ public class EleveServiceImpl implements IEleveService {
         boolean continuer = true;
         while (continuer) {
             int id = idEleve();
-            Eleve ele = elevee.ObtenirEleve(id);
+//            Eleve ele = elevee.ObtenirEleve(id);
+            Eleve ele = elevee.getOne(id);
             while (ele == null) {
                 System.out.println("L'élève avec l'identifiant " + id + " n'existe pas.");
                 System.out.println("Voulez-vous réessayer ? (oui/non)");
                 String reponse = scanner5.nextLine();
                 if (reponse.equalsIgnoreCase("oui")) {
                     id = idEleve();
-                    ele = elevee.ObtenirEleve(id);
+                    ele = elevee.getOne(id);
                 } else if (reponse.equalsIgnoreCase("non")) {
                     modifierEleve(debut);
                 }
             }
-            if (valeurModifiee != "Date de naissance" && valeurModifiee != "Identifiant") {
+            if (valeurModifiee != "Date de naissance" && valeurModifiee != "numero") {
                 System.out.print("Entrez le nouveau " + valeurModifiee + " : ");
                 String nom = scanner5.nextLine();
                 if (valeurModifiee.equalsIgnoreCase("Nom")) {
                     ele.setNom(nom);
+                    elevee.update(ele);
                 } else if (valeurModifiee.equalsIgnoreCase("Prénom")) {
                     ele.setPrenom(nom);
+                    elevee.update(ele);
                 }
             } else if (valeurModifiee.equalsIgnoreCase("Date de naissance")) {
                 ele = exceptionDate(ele);
-            } else if (valeurModifiee.equalsIgnoreCase("Identifiant")) {
+                elevee.update(ele);
+            } else if (valeurModifiee.equalsIgnoreCase("numero")) {
                 ele = exceptionInt(ele);
+                elevee.update(ele);
             }
-            Eleve nouv = elevee.modifier(ele);
+//            Eleve nouv = elevee.modifier(ele);
+            Eleve nouv = elevee.update(ele);
             System.out.println(valeurModifiee + " modifié : " + nouv.toString());
             System.out.println("Voulez-vous modifier un autre utilisateur ? (oui/non)");
             String reponse = scanner5.nextLine();
@@ -368,12 +321,12 @@ public class EleveServiceImpl implements IEleveService {
 
         while (!validId) {
             try {
-                System.out.print("Entrez le nouveau identifiant de l'élève : ");
+                System.out.print("Entrez le nouveau numero de l'élève : ");
                 id = scanner.nextInt();
-                ele.setId(id);
+                ele.setTelephone(id);
                 validId = true;
             } catch (NumberFormatException e) {
-                System.out.println("Erreur : Veuillez entrer un identifiant numérique valide.");
+                System.out.println("Erreur : Veuillez entrer un numero numérique valide.");
             }
         }
 

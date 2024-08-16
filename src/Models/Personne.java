@@ -8,13 +8,15 @@ public class Personne {
     private String ville ;
     private String nom ;
     private String prenom ;
+    protected int telephone;
 
-    public Personne(int id,String nom, String prenom, Date dateNaissance, String ville ) {
+    public Personne(int id,String nom, String prenom, Date dateNaissance, String ville, int telephone) {
         this.id = id;
         this.dateNaissance = dateNaissance;
         this.ville = ville;
         this.nom = nom;
         this.prenom = prenom;
+        this.telephone = telephone;
     }
     public Personne( ) {
     }
@@ -60,5 +62,13 @@ public class Personne {
 
     public void setPrenom(String prenom) {
         this.prenom = prenom;
+    }
+
+    public int getTelephone() {
+        return telephone;
+    }
+
+    public void setTelephone(int telephone) {
+        this.telephone = telephone;
     }
 }

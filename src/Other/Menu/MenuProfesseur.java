@@ -1,4 +1,4 @@
-package Menu;
+package Other.Menu;
 
 import Models.Professeur;
 import Services.Imp.ProfesseurServiceImpl;

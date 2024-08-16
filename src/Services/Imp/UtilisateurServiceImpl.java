@@ -2,7 +2,7 @@ package Services.Imp;
 
 
 import Models.Utilisateur;
-import Menu.MenuUtilisateur;
+import Other.Menu.MenuUtilisateur;
 import Services.IUtilisateurService;
 
 import java.time.Duration;

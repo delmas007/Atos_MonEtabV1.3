@@ -1,4 +1,4 @@
-package Menu;
+package Other.Menu;
 
 import Services.Imp.EleveServiceImpl;
 

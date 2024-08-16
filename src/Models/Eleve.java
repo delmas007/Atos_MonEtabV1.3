@@ -19,11 +19,6 @@ public class Eleve extends Personne implements ICUDEleve {
     /** Liste statique des élèves. */
     static ArrayList<Eleve> eleves = new ArrayList<>();
 
-    /** Âge de l'élève. */
-    private int age;
-
-    /** Genre de l'élève. */
-    private String genre;
 
     /** Classe de l'élève. */
     private String classe;
@@ -37,15 +32,13 @@ public class Eleve extends Personne implements ICUDEleve {
      * @param id            L'identifiant de l'élève.
      * @param nom           Le nom de l'élève.
      * @param prenom        Le prénom de l'élève.
-     * @param age           L'âge de l'élève.
-     * @param genre         Le genre de l'élève.
      * @param dateNaissance La date de naissance de l'élève.
      * @param ville         La ville de résidence de l'élève.
      */
-    public Eleve(int id, String nom, String prenom, int age, String genre, Date dateNaissance, String ville) {
-        super(id, nom, prenom, dateNaissance, ville);
-        this.age = age;
-        this.genre = genre;
+    public Eleve(int id, String nom, String prenom, Date dateNaissance, String ville, String classe, String matricule, int telephone) {
+        super(id, nom, prenom, dateNaissance, ville, telephone);
+        this.classe = classe;
+        this.matricule = matricule;
     }
 
     /**
@@ -98,7 +91,7 @@ public class Eleve extends Personne implements ICUDEleve {
      * @return Les détails de l'élève sous forme de chaîne.
      */
     public String toString() {
-        return "age= " + age + ", genre= " + genre + ", id= " + super.getId() + ", dateNaissance= " + super.getDateNaissance() + ", ville= " + super.getVille() + ", nom= " + super.getNom() + ", prenom= " + super.getPrenom();
+        return  "id= " + super.getId() + ", dateNaissance= " + super.getDateNaissance() + ", ville= " + super.getVille() + ", nom= " + super.getNom() + ", prenom= " + super.getPrenom()+ ", numero= " + super.getTelephone();
     }
 
     /**
@@ -185,5 +178,23 @@ public class Eleve extends Personne implements ICUDEleve {
             }
         }
         return null;
+    }
+
+
+
+    public String getClasse() {
+        return classe;
+    }
+
+    public void setClasse(String classe) {
+        this.classe = classe;
+    }
+
+    public String getMatricule() {
+        return matricule;
+    }
+
+    public void setMatricule(String matricule) {
+        this.matricule = matricule;
     }
 }

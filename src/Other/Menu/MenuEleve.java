@@ -1,6 +1,7 @@
-package Menu;
+package Other.Menu;
 
 import Models.Eleve;
+import Other.Option.OptionEleve;
 import Services.Imp.EleveServiceImpl;
 
 import java.time.Instant;
@@ -31,6 +32,7 @@ public class MenuEleve {
         Scanner scanner = new Scanner(System.in);
         Eleve e = new Eleve();
         EleveServiceImpl eleveService = new EleveServiceImpl();
+        OptionEleve optionEleve = new OptionEleve();
         int choix;
         do {
             System.out.println(
@@ -55,16 +57,16 @@ public class MenuEleve {
 
             switch (choix) {
                 case 1:
-                    eleveService.ajouterEleve();
+                    OptionEleve.ajouterElevee();
                     break;
                 case 2:
-                    eleveService.supprimerEleve();
+                    optionEleve.supprimerEleve();
                     break;
                 case 3:
-                    eleveService.modifierEleve(debut);
+                    optionEleve.modifierEleve(debut);
                     break;
                 case 4:
-                    eleveService.listerEleves(debut);
+                    optionEleve.listerEleves(debut);
                     break;
                 case 5:
                     e.dernier();
@@ -76,7 +78,7 @@ public class MenuEleve {
                     MenuPrincipale.menuPrincipale(debut);
                     break;
                 case 0:
-                    eleveService.quitter(debut);
+                    optionEleve.quitter(debut);
                     System.exit(0);
                     break;
                 default:
