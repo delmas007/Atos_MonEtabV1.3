@@ -15,7 +15,7 @@ public class SingletonDataBase {
         try {
             connection = DriverManager.getConnection(URL, USER, PASSWORD);
         } catch (SQLException e) {
-            System.out.println("Erreur lors de la connexion à la base de données : " + e.getMessage());
+            System.out.println("Erreur lors de la connexion à la base de données :" + e.getMessage());
         }
     }
 

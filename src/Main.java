@@ -48,7 +48,7 @@ public class Main {
 
 
         while (!connexion) {
-            System.out.println("Identifiant ou mot de passe incorrect. Veuillez réessayer.");
+            System.out.println("Identifiant ou mot de passe incorrect. Veuillez réessayer .");
             System.out.println("Identifiant : ");
             identifiant = scanner.nextLine();
             System.out.println("Mot de passe : ");

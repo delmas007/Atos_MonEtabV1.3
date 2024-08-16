@@ -33,7 +33,7 @@ public class MenuProfesseur {
             System.out.println(
                     """
                     ******************************************************
-                                   GESTION DES PROFESSEURS
+                                   GESTION DES PROFESSEURS 
                     ****************************************************** 
                       
                     MENU:
