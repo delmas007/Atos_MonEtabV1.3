@@ -46,7 +46,6 @@ public class MenuEleve {
                          2: Supprimer un élève
                          3: Modifier les informations de l'élève
                          4: Lister les élèves
-                         5: Obtenir le dernier élève ajouté
                          6: Retour
                          0: Quitter
                         

@@ -1,6 +1,5 @@
 package Models;
 
-import Dao.ICUDEleve;
 import Services.Imp.EleveServiceImpl;
 
 import java.util.ArrayList;
@@ -12,7 +11,7 @@ import java.util.Scanner;
  * Représente un élève qui étend la classe Personne et implémente l'interface ICUDEleve.
  * Cette classe gère les informations sur les élèves, y compris les opérations CRUD.
  */
-public class Eleve extends Personne implements ICUDEleve {
+public class Eleve extends Personne {
     /** Service pour la gestion des opérations sur les élèves. */
 //    EleveServiceImpl eleveService = new EleveServiceImpl();
 
@@ -80,7 +79,7 @@ public class Eleve extends Personne implements ICUDEleve {
             System.out.println("Voulez-vous ajouter un élève ? (oui/non)");
             String reponse = scanner2.nextLine();
             if (reponse.equalsIgnoreCase("oui")) {
-                EleveServiceImpl.ajouterElevee();
+//                EleveServiceImpl.ajouterElevee();
             }
         }
     }
@@ -91,7 +90,7 @@ public class Eleve extends Personne implements ICUDEleve {
      * @return Les détails de l'élève sous forme de chaîne.
      */
     public String toString() {
-        return  "id= " + super.getId() + ", dateNaissance= " + super.getDateNaissance() + ", ville= " + super.getVille() + ", nom= " + super.getNom() + ", prenom= " + super.getPrenom()+ ", numero= " + super.getTelephone();
+        return  "dateNaissance= " + super.getDateNaissance() + ", ville= " + super.getVille() + ", nom= " + super.getNom() + ", prenom= " + super.getPrenom()+ ", numero= " + super.getTelephone();
     }
 
     /**
@@ -150,7 +149,6 @@ public class Eleve extends Personne implements ICUDEleve {
      *
      * @return Une liste d'élèves.
      */
-    @Override
     public List<Eleve> obtenirEleve() {
         return eleves;
     }
@@ -160,7 +158,7 @@ public class Eleve extends Personne implements ICUDEleve {
      *
      * @param identifiant L'identifiant de l'élève à obtenir.
      */
-    @Override
+
     public void Obtenir(int identifiant) {
         // Implémentation à fournir
     }

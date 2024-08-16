@@ -1,5 +1,6 @@
 package Other.Menu;
 
+import Other.Option.OptionEleve;
 import Services.Imp.EleveServiceImpl;
 
 import java.time.Instant;
@@ -29,6 +30,7 @@ public class MenuPrincipale {
             LocalTime date = LocalTime.now();
             Scanner scanner = new Scanner(System.in);
             EleveServiceImpl eleveService = new EleveServiceImpl();
+            OptionEleve optionEleve = new OptionEleve();
             System.out.println(
                     """
                     ******************************************************
@@ -57,7 +59,7 @@ public class MenuPrincipale {
                     MenuUtilisateur.menu(debut);
                     break;
                 case 0:
-                    eleveService.quitter(debut);
+                    optionEleve.quitter(debut);
                     break;
                 default:
                     System.out.println("Choix invalide. Veuillez réessayer.");

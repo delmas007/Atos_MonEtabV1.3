@@ -1,8 +1,6 @@
 package Models;
 
 
-import Dao.ICRUDProfesseur;
-import Dao.IEducation;
 import Services.Imp.ProfesseurServiceImpl;
 
 import java.util.ArrayList;
@@ -14,7 +12,7 @@ import java.util.Scanner;
  * Représente un professeur qui étend la classe Personne et implémente les interfaces ICRUDProfesseur et IEducation.
  * Cette classe gère les informations sur les professeurs, y compris les opérations CRUD, et les interactions liées à l'éducation.
  */
-public class Professeur extends Personne implements ICRUDProfesseur, IEducation {
+public class Professeur extends Personne {
 //    /** Service pour la gestion des opérations sur les professeurs. */
 //    ProfesseurServiceImpl professeurService = new ProfesseurServiceImpl();
 
@@ -70,7 +68,7 @@ public class Professeur extends Personne implements ICRUDProfesseur, IEducation 
      * @param professeur Le professeur à ajouter.
      * @return Le professeur ajouté ou null.
      */
-    @Override
+
     public Professeur ajouter(Professeur professeur) {
         return null;
     }
@@ -81,7 +79,7 @@ public class Professeur extends Personne implements ICRUDProfesseur, IEducation 
      * @param professeur Le professeur avec les nouvelles informations.
      * @return Le professeur modifié ou null.
      */
-    @Override
+
     public Professeur modifier(Professeur professeur) {
         return null;
     }
@@ -91,7 +89,7 @@ public class Professeur extends Personne implements ICRUDProfesseur, IEducation 
      *
      * @param identifiant L'identifiant du professeur à supprimer.
      */
-    @Override
+//    @Override
     public void supprimer(int identifiant) {
         Scanner scanner = new Scanner(System.in);
         for (int i = 0; i < professeurs.size(); i++) {
@@ -112,7 +110,7 @@ public class Professeur extends Personne implements ICRUDProfesseur, IEducation 
      *
      * @return Une liste de professeurs.
      */
-    @Override
+//    @Override
     public List<Professeur> obtenirProfesseurs() {
         return professeurs;
     }
@@ -122,7 +120,7 @@ public class Professeur extends Personne implements ICRUDProfesseur, IEducation 
      *
      * @param identifiant L'identifiant du professeur à obtenir.
      */
-    @Override
+//    @Override
     public void Obtenir(int identifiant) {
         // Implémentation à fournir
     }
@@ -172,7 +170,7 @@ public class Professeur extends Personne implements ICRUDProfesseur, IEducation 
      * @param matiere La matière à enseigner.
      * @return Une chaîne de caractères indiquant la matière enseignée.
      */
-    @Override
+//    @Override
     public String emseigner(String matiere) {
         return "Enseigne la matière " + matiere;
     }
@@ -183,7 +181,7 @@ public class Professeur extends Personne implements ICRUDProfesseur, IEducation 
      * @param cours Le sujet du cours à préparer.
      * @return Une chaîne de caractères indiquant le sujet du cours préparé.
      */
-    @Override
+//    @Override
     public String preparerCours(String cours) {
         return "Prépare le contenu d'un cours sur le sujet " + cours;
     }
@@ -194,7 +192,7 @@ public class Professeur extends Personne implements ICRUDProfesseur, IEducation 
      * @param sujet Le sujet de la réunion.
      * @return Une chaîne de caractères indiquant le sujet de la réunion.
      */
-    @Override
+//    @Override
     public String assisterReunion(String sujet) {
         return "Doit assister à une réunion sur " + sujet;
     }

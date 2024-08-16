@@ -97,24 +97,23 @@ public class EleveDaoImpl implements IEleveDAO {
     @Override
     public void supprimer(int id) {
         String deleteEleveSQL = "DELETE FROM eleve WHERE id = ?";
-        String deletePersonneSQL = "DELETE FROM personne WHERE id = ?";
 
         try {
             connection.setAutoCommit(false); // Commencer la transaction
-                    try (PreparedStatement deletePersonneStmt = connection.prepareStatement(deletePersonneSQL)) {
+                    try (PreparedStatement deletePersonneStmt = connection.prepareStatement(deleteEleveSQL)) {
                         deletePersonneStmt.setInt(1, id);
-                        int rowsDeletedPersonne = deletePersonneStmt.executeUpdate();
+                        int rowsDeletedEleve = deletePersonneStmt.executeUpdate();
 
-                        if (rowsDeletedPersonne > 0) {
+                        if (rowsDeletedEleve > 0) {
                             connection.commit(); // Valider la transaction
                             System.out.println("Élève supprimé avec succès !");
                         } else {
-                            connection.rollback(); // Annuler la transaction si l'ID n'existe pas dans la table personne
-                            System.out.println("Erreur lors de la suppression de l'élève dans la table personne.");
+                            connection.rollback(); // Annuler la transaction si l'ID n'existe pas dans la table
+                            System.out.println("Erreur lors de la suppression de l'élève car l'ID n'existe pas");
                         }
                     } catch (SQLException e) {
                         connection.rollback(); // Annuler la transaction en cas d'erreur
-                        System.out.println("Erreur lors de la suppression de l'élève dans la table personne : " + e.getMessage());
+                        System.out.println("Erreur lors de la suppression de l'élève  : " + e.getMessage());
                     }finally {
                         connection.setAutoCommit(true); // Remettre l'auto-commit à true
                     }
@@ -127,7 +126,7 @@ public class EleveDaoImpl implements IEleveDAO {
     @Override
     public List<Eleve> obtenirEleves() {
         List<Eleve> eleves = new ArrayList<>();
-        String query = "SELECT p.id, p.nom, p.prenom, p.date_naissance, p.ville, p.telephone, e.classe, e.matricule FROM personne p INNER JOIN eleve e ON p.id = e.id";
+        String query = "SELECT id, nom, prenom, date_naissance, ville, telephone, classe, matricule FROM eleve ";
 
         try (Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(query)) {

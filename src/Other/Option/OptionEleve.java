@@ -39,19 +39,6 @@ public class OptionEleve {
         System.out.print("Entrez la classe : ");
         String classe = scanner2.nextLine();
         String matricule = UUID.randomUUID().toString();
-        boolean validId = false;
-        int id = 0;
-        while (!validId) {
-            try {
-                System.out.print("Entrez l'Id : ");
-                id = scanner2.nextInt();
-                validId = true;
-            } catch (Exception e) {
-                System.out.println("Erreur : Veuillez entrer un id valide.");
-                scanner2.nextLine();
-            }
-        }
-        scanner2.nextLine();
         System.out.print("Entrez le ville : ");
         String ville = scanner2.nextLine();
         Date date1 = null;
@@ -67,6 +54,7 @@ public class OptionEleve {
                 System.out.println("Erreur : Veuillez entrer une date valide.");
             }
         }
+        int id = 0;
         Eleve eleve = new Eleve(id, nom, prenom, date1, ville,classe, matricule,telephone);
         System.out.println("Élève ajouté : " + eleve.toString());
         elevee.save(eleve);
@@ -177,7 +165,7 @@ public class OptionEleve {
      */
     public void listerEleves(Instant debut) {
         Eleve eleve = new Eleve();
-        List<Eleve> eleves = eleve.obtenirEleve();
+        List<Eleve> eleves = elevee.getAll();
         if (eleves.isEmpty()) {
             System.out.println("La liste des élèves est vide.");
             Scanner scanner = new Scanner(System.in);
