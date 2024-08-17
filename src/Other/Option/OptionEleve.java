@@ -1,5 +1,6 @@
 package Other.Option;
 
+import Dao.impl.EleveDaoImpl;
 import Models.Eleve;
 import Other.Menu.MenuEleve;
 import Services.Imp.EleveServiceImpl;
@@ -14,7 +15,7 @@ import java.util.UUID;
 
 public class OptionEleve {
 
-    static EleveServiceImpl elevee = new EleveServiceImpl();
+    static EleveServiceImpl elevee = new EleveServiceImpl(new EleveDaoImpl());
 
     public static void ajouterElevee()  {
         Scanner scanner2 = new Scanner(System.in);
@@ -79,7 +80,6 @@ public class OptionEleve {
                 System.out.print("Entrez l'identifiant de l'élève : ");
                 int id = scanner3.nextInt();
                 validInput = true;
-//                elevee.supprimer(id);
                 elevee.delete(id);
             } catch (Exception e) {
                 System.out.println("Erreur : Veuillez entrer un identifiant numérique valide.");
@@ -120,7 +120,7 @@ public class OptionEleve {
                         1: Modifier le nom
                         2: Modifier le prénom
                         3: Modifier la date de naissance
-                        4: Modifier le numero
+                        4: Modifier le numero de telephone
                         5: Retour
                         6: Accueil
                        
@@ -270,17 +270,13 @@ public class OptionEleve {
                 String nom = scanner5.nextLine();
                 if (valeurModifiee.equalsIgnoreCase("Nom")) {
                     ele.setNom(nom);
-                    elevee.update(ele);
                 } else if (valeurModifiee.equalsIgnoreCase("Prénom")) {
                     ele.setPrenom(nom);
-                    elevee.update(ele);
                 }
             } else if (valeurModifiee.equalsIgnoreCase("Date de naissance")) {
                 ele = exceptionDate(ele);
-                elevee.update(ele);
             } else if (valeurModifiee.equalsIgnoreCase("numero")) {
                 ele = exceptionInt(ele);
-                elevee.update(ele);
             }
 //            Eleve nouv = elevee.modifier(ele);
             Eleve nouv = elevee.update(ele);
@@ -314,7 +310,7 @@ public class OptionEleve {
                 ele.setTelephone(id);
                 validId = true;
             } catch (NumberFormatException e) {
-                System.out.println("Erreur : Veuillez entrer un numero numérique valide.");
+                System.out.println("Erreur : Veuillez entrer une valeur numérique valide.");
             }
         }
 

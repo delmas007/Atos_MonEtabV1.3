@@ -31,7 +31,6 @@ public class MenuEleve {
         LocalTime date = LocalTime.now();
         Scanner scanner = new Scanner(System.in);
         Eleve e = new Eleve();
-        EleveServiceImpl eleveService = new EleveServiceImpl();
         OptionEleve optionEleve = new OptionEleve();
         int choix;
         do {
@@ -67,13 +66,13 @@ public class MenuEleve {
                 case 4:
                     optionEleve.listerEleves(debut);
                     break;
+//                case 5:
+//                    e.dernier();
+//                    scanner.nextLine();
+//                    System.out.println("Appuyez sur 0 pour revenir au menu : ");
+//                    int choixRetour = scanner.nextInt();
+//                    break;
                 case 5:
-                    e.dernier();
-                    scanner.nextLine();
-                    System.out.println("Appuyez sur 0 pour revenir au menu : ");
-                    int choixRetour = scanner.nextInt();
-                    break;
-                case 6:
                     MenuPrincipale.menuPrincipale(debut);
                     break;
                 case 0:

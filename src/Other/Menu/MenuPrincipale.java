@@ -29,7 +29,6 @@ public class MenuPrincipale {
         do {
             LocalTime date = LocalTime.now();
             Scanner scanner = new Scanner(System.in);
-            EleveServiceImpl eleveService = new EleveServiceImpl();
             OptionEleve optionEleve = new OptionEleve();
             System.out.println(
                     """

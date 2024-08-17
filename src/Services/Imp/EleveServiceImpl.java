@@ -20,11 +20,14 @@ import java.util.UUID;
  * et l'affichage des informations des élèves.
  */
 public class EleveServiceImpl implements IEleveService {
-    Eleve elevee = new Eleve();
-      EleveDaoImpl eleveDAO = new EleveDaoImpl();
+    private final EleveDaoImpl eleveDAO;
 
-    public EleveServiceImpl() {
+    public EleveServiceImpl(EleveDaoImpl eleveDAO) {
+        this.eleveDAO = eleveDAO;
     }
+
+//    public EleveServiceImpl() {
+//    }
 
 
     @Override

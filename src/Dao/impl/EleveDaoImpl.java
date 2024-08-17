@@ -17,11 +17,6 @@ import java.util.Scanner;
 
 public class EleveDaoImpl implements IEleveDAO {
 
-    Instant debutSession = Instant.now();
-    private static final Scanner scanner = new Scanner(System.in);
-    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-    private List<Eleve> eleves = new ArrayList<>();
-
     private final Connection connection;
 
     public EleveDaoImpl() {
@@ -97,7 +92,6 @@ public class EleveDaoImpl implements IEleveDAO {
     @Override
     public void supprimer(int id) {
         String deleteEleveSQL = "DELETE FROM eleve WHERE id = ?";
-
         try {
             connection.setAutoCommit(false); // Commencer la transaction
                     try (PreparedStatement deletePersonneStmt = connection.prepareStatement(deleteEleveSQL)) {
@@ -127,7 +121,6 @@ public class EleveDaoImpl implements IEleveDAO {
     public List<Eleve> obtenirEleves() {
         List<Eleve> eleves = new ArrayList<>();
         String query = "SELECT id, nom, prenom, date_naissance, ville, telephone, classe, matricule FROM eleve ";
-
         try (Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(query)) {
             while (resultSet.next()) {

@@ -1,6 +1,8 @@
 package Other.Menu;
 
 import Models.Professeur;
+import Other.Option.OptionEleve;
+import Other.Option.OptionProfesseur;
 import Services.Imp.ProfesseurServiceImpl;
 
 import java.time.Instant;
@@ -27,6 +29,7 @@ public class MenuProfesseur {
         LocalTime date = LocalTime.now();
         Scanner scanner = new Scanner(System.in);
         ProfesseurServiceImpl professeurService = new ProfesseurServiceImpl();
+        OptionProfesseur optionProfesseur = new OptionProfesseur();
         Professeur professeur = new Professeur();
         int choix;
         do {
@@ -41,8 +44,7 @@ public class MenuProfesseur {
                          2: Supprimer un professeur
                          3: Modifier les informations du professeur
                          4: Lister les professeurs
-                         5: Obtenir le dernier professeur ajouté
-                         6: Retour
+                         5: Retour
                          0: Quitter
                         
                     Date système : """+ " " + date.getHour() + ":" + date.getMinute() +
@@ -52,21 +54,18 @@ public class MenuProfesseur {
 
             switch (choix) {
                 case 1:
-                    professeurService.ajouterProfesseur();
+                    OptionProfesseur.ajouterProfesseurr();
                     break;
                 case 2:
-                    professeurService.supprimerProfesseur();
+                    optionProfesseur.supprimerProfesseur();
                     break;
                 case 3:
-                    professeurService.modifierProfesseur(debut);
+                    optionProfesseur.modifierProfesseur(debut);
                     break;
                 case 4:
-                    professeurService.listerProfesseur(debut);
+                    optionProfesseur.listerProfesseur(debut);
                     break;
                 case 5:
-                    professeur.dernier();
-                    break;
-                case 6:
                     MenuPrincipale.menuPrincipale(debut);
                     break;
                 case 0:

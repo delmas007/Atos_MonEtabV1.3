@@ -41,7 +41,7 @@ public class Professeur extends Personne {
      * @param dateNaissance La date de naissance du professeur.
      * @param ville         La ville de résidence du professeur.
      */
-    public Professeur(boolean vacant, int id, String nom, String prenom, Date dateNaissance, String ville,int telephone) {
+    public Professeur(boolean vacant,String matiereEnseigne,String prochainCours,String sujetProchaineReunion, int id, String nom, String prenom, Date dateNaissance, String ville,int telephone) {
         super(id, nom, prenom, dateNaissance, ville,telephone);
         this.vacant = vacant;
     }
@@ -134,24 +134,6 @@ public class Professeur extends Personne {
         // Code pour mettre à jour les informations du professeur
     }
 
-    /**
-     * Affiche le dernier professeur ajouté à la liste.
-     * Si aucun professeur n'est présent, demande si un professeur doit être ajouté.
-     */
-    public void dernier() {
-        Scanner scanner2 = new Scanner(System.in);
-        if (!professeurs.isEmpty()) {
-            Professeur dernierProfesseur = professeurs.get(professeurs.size() - 1);
-            System.out.println("Dernier professeur ajouté : " + dernierProfesseur.toString());
-        } else {
-            System.out.println("Aucun professeur n'a été ajouté.");
-            System.out.println("Voulez-vous ajouter un professeur ? (oui/non)");
-            String reponse = scanner2.nextLine();
-            if (reponse.equalsIgnoreCase("oui")) {
-                ProfesseurServiceImpl.ajouterProfesseurr();
-            }
-        }
-    }
 
     /**
      * Retourne une chaîne de caractères représentant les détails du professeur.
@@ -161,7 +143,7 @@ public class Professeur extends Personne {
     @Override
     public String toString() {
         return "Entite.Professeur{" +
-                "vacant=" + vacant + ", id= " + super.getId() + ", dateNaissance= " + super.getDateNaissance() + ", ville= " + super.getVille() + ", nom= " + super.getNom() + ", prenom= " + super.getPrenom() + "}";
+                "vacant=" + vacant + ", tel = " + super.getTelephone() + ", dateNaissance= " + super.getDateNaissance() + ", ville= " + super.getVille() + ", nom= " + super.getNom() + ", prenom= " + super.getPrenom() + "}";
     }
 
     /**
@@ -210,5 +192,37 @@ public class Professeur extends Personne {
             }
         }
         return null;
+    }
+
+    public boolean isVacant() {
+        return vacant;
+    }
+
+    public void setVacant(boolean vacant) {
+        this.vacant = vacant;
+    }
+
+    public String getMatiereEnseigne() {
+        return matiereEnseigne;
+    }
+
+    public void setMatiereEnseigne(String matiereEnseigne) {
+        this.matiereEnseigne = matiereEnseigne;
+    }
+
+    public String getProchainCours() {
+        return prochainCours;
+    }
+
+    public void setProchainCours(String prochainCours) {
+        this.prochainCours = prochainCours;
+    }
+
+    public String getSujetProchaineReunion() {
+        return sujetProchaineReunion;
+    }
+
+    public void setSujetProchaineReunion(String sujetProchaineReunion) {
+        this.sujetProchaineReunion = sujetProchaineReunion;
     }
 }
