@@ -1,5 +1,7 @@
+import Dao.impl.UtilisateurDaoImpl;
 import Models.Utilisateur;
 import Other.Menu.MenuPrincipale;
+import Services.Imp.UtilisateurServiceImpl;
 
 import java.sql.*;
 import java.time.Instant;
@@ -37,23 +39,26 @@ public class Main {
                """
         );
 
-        // Demande l'identifiant et le mot de passe à l'utilisateur
-        System.out.println("Identifiant : ");
-        String identifiant = scanner.nextLine();
+        // Demande l'pseudo et le mot de passe à l'utilisateur
+        System.out.println("pseudo : ");
+        String pseudo = scanner.nextLine();
         System.out.println("Mot de passe : ");
         String motDePasse = scanner.nextLine();
+        UtilisateurServiceImpl utilisateurService = new UtilisateurServiceImpl(new UtilisateurDaoImpl());
 
-
-        boolean connexion = Utilisateur.authentifier(identifiant, motDePasse);
+        boolean connexion = utilisateurService.connexion(pseudo, motDePasse);
 
 
         while (!connexion) {
-            System.out.println("Identifiant ou mot de passe incorrect. Veuillez réessayer .");
-            System.out.println("Identifiant : ");
-            identifiant = scanner.nextLine();
+            System.out.println("pseudo ou mot de passe incorrect. Veuillez réessayer .");
+            System.out.println("pseudo : ");
+            pseudo = scanner.nextLine();
             System.out.println("Mot de passe : ");
             motDePasse = scanner.nextLine();
-            connexion = Utilisateur.authentifier(identifiant, motDePasse);
+            connexion = utilisateurService.connexion(pseudo, motDePasse);
+            if (!connexion) {
+                System.out.println("pseudo ou mot de passe incorrect. Veuillez réessayer .");
+            }
         }
 
         MenuPrincipale.menuPrincipale(debut);
@@ -67,7 +72,7 @@ public class Main {
         try {
             connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
 
-            String checkUserQuery = "SELECT COUNT(*) FROM utilisateur WHERE identifiant = ?";
+            String checkUserQuery = "SELECT COUNT(*) FROM utilisateur WHERE pseudo = ?";
             preparedStatement = connection.prepareStatement(checkUserQuery);
             preparedStatement.setString(1, "admin");
             resultSet = preparedStatement.executeQuery();
@@ -75,10 +80,13 @@ public class Main {
 
             int count = resultSet.getInt(1);
             if (count == 0) {
-                String insertUserQuery = "INSERT INTO utilisateur (identifiant, motDePasse) VALUES (?, ?)";
+                String insertUserQuery = "INSERT INTO utilisateur (pseudo, motDePasse,dateCreation) VALUES (?, ?,?)";
+                java.sql.Date sqlDate = new java.sql.Date(System.currentTimeMillis());
                 preparedStatement = connection.prepareStatement(insertUserQuery);
                 preparedStatement.setString(1, "admin");
                 preparedStatement.setString(2, "admin");
+                preparedStatement.setDate(3, sqlDate);
+
                 preparedStatement.executeUpdate();
                 System.out.println("Utilisateur 'admin' ajouté par défaut.");
             }

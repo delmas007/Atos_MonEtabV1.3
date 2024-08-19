@@ -13,9 +13,6 @@ public class Utilisateur {
     /** Identifiant unique de l'utilisateur. */
     private int id;
 
-    /** Identifiant de connexion de l'utilisateur. */
-    private String identifiant;
-
     /** Pseudo de l'utilisateur. */
     private String pseudo;
 
@@ -28,15 +25,13 @@ public class Utilisateur {
     /**
      * Constructeur avec paramètres pour créer un utilisateur.
      *
-     * @param id            L'identifiant unique de l'utilisateur.
-     * @param identifiant   L'identifiant de connexion de l'utilisateur.
+     * @param id            L'identifiant unique de l'utilisateur.  L'identifiant de connexion de l'utilisateur.
      * @param pseudo        Le pseudo de l'utilisateur.
      * @param motDePasse    Le mot de passe de l'utilisateur.
      * @param dateCreation  La date de création du compte utilisateur.
      */
-    public Utilisateur(int id, String identifiant, String pseudo, String motDePasse, Date dateCreation) {
+    public Utilisateur(int id, String pseudo, String motDePasse, Date dateCreation) {
         this.id = id;
-        this.identifiant = identifiant;
         this.pseudo = pseudo;
         this.motDePasse = motDePasse;
         this.dateCreation = dateCreation;
@@ -70,7 +65,7 @@ public class Utilisateur {
         Random random = new Random();
         Date dateCreation = Date.from(Instant.now());
         int id = random.nextInt(9000) + 1000;
-        Utilisateur utilisateur = new Utilisateur(id, identifiant, "pseudo", motDePasse, dateCreation);
+        Utilisateur utilisateur = new Utilisateur();
         utilisateurs.add(utilisateur);
         return true;
     }
@@ -86,7 +81,7 @@ public class Utilisateur {
         Scanner scanner = new Scanner(System.in);
         for (int i = 0; i < utilisateurs.size(); i++) {
             Utilisateur utilisateur = utilisateurs.get(i);
-            if (utilisateur.getIdentifiant().equals(identifiant)) {
+            if (true) {
                 if (utilisateur.getMotDePasse().equals(motDePasse)) {
                     utilisateurs.remove(i);
                     System.out.println("Compte supprimé avec succès.");
@@ -120,7 +115,7 @@ public class Utilisateur {
      */
     public Utilisateur ObtenirUtilisateur(String identifiant) {
         for (Utilisateur utilisateur : utilisateurs) {
-            if (utilisateur.getIdentifiant().equals(identifiant)) {
+            if (true) {
                 return utilisateur;
             }
         }
@@ -130,13 +125,12 @@ public class Utilisateur {
     /**
      * Modifie le compte utilisateur si l'identifiant et le mot de passe correspondent.
      *
-     * @param identifiant   L'identifiant de connexion de l'utilisateur.
-     * @param motDePasse    Le mot de passe de l'utilisateur.
+     * @param identifiant L'identifiant de connexion de l'utilisateur.
      * @return true si la modification réussit, sinon false.
      */
-    public boolean modifierCompte(String identifiant, String motDePasse) {
+    public boolean modifierCompte(String identifiant) {
         for (Utilisateur utilisateur : utilisateurs) {
-            if (utilisateur.getIdentifiant().equals(identifiant)) {
+            if (true) {
                 if (utilisateur.getMotDePasse().equals(motDePasse)) {
                     return true;
                 } else {
@@ -156,15 +150,15 @@ public class Utilisateur {
      * @return L'utilisateur modifié ou null si la modification échoue.
      */
     public Utilisateur modifier(Utilisateur utilisateur) {
-        boolean modifierr = modifierCompte(utilisateur.getIdentifiant(), utilisateur.getMotDePasse());
+        boolean modifierr = modifierCompte(utilisateur.getMotDePasse());
         if (modifierr) {
             for (Utilisateur existeUtilisateur : utilisateurs) {
                 if (existeUtilisateur.getId() == utilisateur.getId()) {
                     existeUtilisateur.setPseudo(utilisateur.getPseudo());
-                    existeUtilisateur.setIdentifiant(utilisateur.getIdentifiant());
+//                    existeUtilisateur.setIdentifiant(utilisateur.getIdentifiant());
                     existeUtilisateur.setMotDePasse(utilisateur.getMotDePasse());
                     existeUtilisateur.setId(utilisateur.getId());
-                    System.out.println("L'utilisateur avec l'identifiant " + utilisateur.getIdentifiant() + " a été modifié.");
+                    System.out.println("L'utilisateur avec l'identifiant " + " a été modifié.");
                     return existeUtilisateur;
                 }
             }
@@ -190,23 +184,6 @@ public class Utilisateur {
         this.id = id;
     }
 
-    /**
-     * Retourne l'identifiant de connexion de l'utilisateur.
-     *
-     * @return L'identifiant de connexion.
-     */
-    public String getIdentifiant() {
-        return identifiant;
-    }
-
-    /**
-     * Définit l'identifiant de connexion de l'utilisateur.
-     *
-     * @param identifiant L'identifiant de connexion.
-     */
-    public void setIdentifiant(String identifiant) {
-        this.identifiant = identifiant;
-    }
 
     /**
      * Retourne le pseudo de l'utilisateur.
@@ -271,7 +248,6 @@ public class Utilisateur {
     public String toString() {
         return "Utilisateur{" +
                 "id=" + id +
-                ", identifiant='" + identifiant + '\'' +
                 ", pseudo='" + pseudo + '\'' +
                 ", motDePasse='" + motDePasse + '\'' +
                 ", dateCreation=" + dateCreation +

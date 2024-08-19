@@ -1,5 +1,6 @@
 package Other.Menu;
 
+import Other.Option.OptionUtilisateur;
 import Services.Imp.UtilisateurServiceImpl;
 
 import java.time.Instant;
@@ -24,7 +25,7 @@ public class MenuUtilisateur {
     public static void menu(Instant debut) {
         LocalTime date = LocalTime.now();
         Scanner scanner = new Scanner(System.in);
-        UtilisateurServiceImpl utilisateurService = new UtilisateurServiceImpl();
+        OptionUtilisateur optionUtilisateur = new OptionUtilisateur();
         int choix;
         do {
             System.out.println(
@@ -48,16 +49,16 @@ public class MenuUtilisateur {
 
             switch (choix) {
                 case 1:
-                    utilisateurService.ajouterUtilisateur();
+                    optionUtilisateur.ajouterUtilisateur();
                     break;
                 case 2:
-                    utilisateurService.supprimerUtilisateur();
+                    optionUtilisateur.supprimerUtilisateur();
                     break;
                 case 3:
-                    utilisateurService.modifierUtilisateur(debut);
+                    optionUtilisateur.modifierUtilisateur(debut);
                     break;
                 case 4:
-                    utilisateurService.listerUtilisateurs(debut);
+                    optionUtilisateur.listerUtilisateurs(debut);
                     break;
                 case 5, 0:
                     MenuPrincipale.menuPrincipale(debut);
